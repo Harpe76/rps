@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}
+
+.button {
+    width: 250px;
+    height: 100px;
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.result {
+    width: 800px;
+}
+
+.end {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+}

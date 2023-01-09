@@ -1,14 +1,19 @@
 
-let rounds;
+let rounds = 0;
 let playerSelection;
 let computerSelection;
 let score = 0;
 
-PlayGame();
+//PlayGame();
+const buttons = document.querySelectorAll(".button");
+buttons.forEach(button => button.addEventListener("click",function(e) {
+    PlayRound(e.target.id);
+    
+}));
+
+
 
 function PlayGame() {
-    
-    rounds = prompt("How many rounds do you want to play?");
 
     for (let i = 0; i < rounds; i++) {
         PlayRound();
@@ -41,12 +46,12 @@ function MakeLowerCase(text) {
     return text.toLowerCase();
 }
 
-function PlayRound() {
-
-    playerSelection = prompt("Type in rock, paper or scissors to play.");
+function PlayRound(playerSelection) {
+ 
     computerSelection = GetComputerChoice();
 
     let result;
+
 
     switch(playerSelection) {
         case "rock":
@@ -82,10 +87,27 @@ function PlayRound() {
         default:
             result = "That is not a valid selection."
     }
-    console.log(result)
+    rounds += 1;
+
+    UpdateUI(result)
     return result;
 }
 
+function UpdateUI(result)
+ {
+    document.getElementById("result").innerHTML = result;
+
+    let scoreString = "Your score is: " + score.toString() + " out of 5 rounds"
+    console.log(rounds);
+    if (rounds !== 5) {
+        document.getElementById("tally").innerHTML = scoreString;
+    } else {
+        document.getElementById("tally").innerHTML = "Game Over!"
+        rounds = 0;
+        score = 0;
+    }
+
+ }
 function randomIntFromInterval(min, max) { 
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
